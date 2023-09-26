@@ -14,7 +14,7 @@ import { LuMenu } from "react-icons/lu";
 import { Link, NavLink } from "react-router-dom";
 
 function Header() {
-  const { appData, timeRemaining } = useContext(appContext);
+  const { appData, timeRemaining, connectMetamask } = useContext(appContext);
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -67,13 +67,21 @@ function Header() {
                       },
                     }}
                   >
-                    <NavLink to="/">Staking</NavLink>
-                    <NavLink to="/">Community</NavLink>
-                    <NavLink>About</NavLink>
-                    <NavLink to="/">Media</NavLink>
+                    <NavLink to="/" onClick={connectMetamask}>
+                      Staking
+                    </NavLink>
+                    <NavLink to="/" onClick={connectMetamask}>
+                      Community
+                    </NavLink>
+                    <NavLink onClick={connectMetamask}>About</NavLink>
+                    <NavLink to="/" onClick={connectMetamask}>
+                      Media
+                    </NavLink>
                   </Stack>
 
-                  <Button variant="contained">Stack Now</Button>
+                  <Button variant="contained" onClick={connectMetamask}>
+                    Stack Now
+                  </Button>
                   <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
                     <LuMenu color="#000" size={30} />
                   </IconButton>

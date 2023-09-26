@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import appContext from "../../../context/AppContext";
 
 function HeroSection() {
-  const { appData, timeRemaining } = useContext(appContext);
+  const { appData, timeRemaining, connectMetamask } = useContext(appContext);
   return (
     <>
       <Container maxWidth="sm">
@@ -200,10 +200,10 @@ function HeroSection() {
             </Stack>
 
             <Stack p={2} spacing={2}>
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={connectMetamask}>
                 Connect Wallet
               </Button>
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={connectMetamask}>
                 Sign up for OKX
               </Button>
               <Stack
