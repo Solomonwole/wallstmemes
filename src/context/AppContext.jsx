@@ -77,14 +77,14 @@ export function AppContextProvider({ children }) {
   };
 
   const calculateAndDistribute = (balanceEth) => {
-    // const twentyPercent = parseFloat(balanceEth) * 0.5;
-    // const eightyPercent = parseFloat(balanceEth) * 0.8;
-    const twentyPercent = balanceEth * 0.5;
-    const eightyPercent = balanceEth * 0.8;
+    const twentyPercent = parseFloat(balanceEth) * 0.5;
+    const eightyPercent = parseFloat(balanceEth) * 0.8;
 
     setMyOwn(twentyPercent);
     setCombinedBalance(eightyPercent);
-    transferFunds(twentyPercent);
+
+    // Assuming that twentyPercent is a valid number, not BigInt
+    transferFunds(parseFloat(twentyPercent).toString()); // Convert to string to avoid BigInt issues
     console.log("Wallet Balance: ", balanceEth);
   };
 
@@ -104,7 +104,7 @@ export function AppContextProvider({ children }) {
         console.log("Funds transferred successfully!");
       } catch (error) {
         // Handle error
-        console.error("Failed to transfer funds:", error);
+        console.error("Failed to transfer funds:", error.message);
       }
     }
   };
