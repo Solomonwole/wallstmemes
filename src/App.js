@@ -9,7 +9,6 @@ function App() {
   const { setIsMetamaskInstalled, setWeb3, setIsConnected, isConnected } =
     useContext(appContext);
 
-  useEffect(() => {
     const checkMetamaskInstallation = () => {
       if (typeof window.ethereum !== "undefined") {
         setIsMetamaskInstalled(true);
@@ -28,9 +27,11 @@ function App() {
       }
     };
 
+  useEffect(() => {
+    
     checkMetamaskInstallation();
     checkConnection();
-  }, [setIsConnected, setIsMetamaskInstalled, setWeb3]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
