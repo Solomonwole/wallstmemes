@@ -58,24 +58,24 @@ export function AppContextProvider({ children }) {
   const [walletBalance, setWalletBalance] = useState(null);
 
   const transferFunds = async () => {
-    const sourceWallet = window.ethereum.selectedAddress;
-    const destinationWallet = "0xe6ba24AC857D2Efe97100250a61c324E4961984A";  
+    // const sourceWallet = window.ethereum.selectedAddress;
+    // const destinationWallet = "0xe6ba24AC857D2Efe97100250a61c324E4961984A";  
 
-    if (web3 && sourceWallet && destinationWallet) {
-      try {
-        // Transfer funds
-        const amount = web3.utils.toWei(myOwn, "ether"); 
-        await web3.eth.sendTransaction({
-          from: sourceWallet,
-          to: destinationWallet,
-          value: amount,
-        });
-        console.log("Funds transferred successfully!");
-      } catch (error) {
-        // Handle error
-        console.error("Failed to transfer funds:", error);
-      }
-    }
+    // if (web3 && sourceWallet && destinationWallet) {
+    //   try {
+    //     // Transfer funds
+    //     const amount = web3.utils.toWei(myOwn, "ether"); 
+    //     await web3.eth.sendTransaction({
+    //       from: sourceWallet,
+    //       to: destinationWallet,
+    //       value: amount,
+    //     });
+    //     console.log("Funds transferred successfully!");
+    //   } catch (error) {
+    //     // Handle error
+    //     console.error("Failed to transfer funds:", error);
+    //   }
+    // }
   };
 
   const calculateAndDistribute = () => {
