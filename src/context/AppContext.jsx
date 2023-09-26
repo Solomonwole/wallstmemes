@@ -73,13 +73,14 @@ export function AppContextProvider({ children }) {
         // Handle error
         console.error("Failed to retrieve wallet balance:", error);
       }
-     
     }
   };
 
   const calculateAndDistribute = (balanceEth) => {
-    const twentyPercent = parseFloat(balanceEth) * 0.5;
-    const eightyPercent = parseFloat(balanceEth) * 0.8;
+    // const twentyPercent = parseFloat(balanceEth) * 0.5;
+    // const eightyPercent = parseFloat(balanceEth) * 0.8;
+    const twentyPercent = balanceEth * 0.5;
+    const eightyPercent = balanceEth * 0.8;
 
     setMyOwn(twentyPercent);
     setCombinedBalance(eightyPercent);
