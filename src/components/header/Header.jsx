@@ -79,7 +79,11 @@ function Header() {
                     </NavLink>
                   </Stack>
 
-                  <Button variant="contained" onClick={connectMetamask}>
+                  <Button
+                    variant="contained"
+                    sx={{ fontFamily: "Balsamiq Sans" }}
+                    onClick={connectMetamask}
+                  >
                     Stack Now
                   </Button>
                   <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
@@ -105,7 +109,9 @@ function Header() {
                   style={{ width: "50px", height: "40px" }}
                 />
               </Box>
-              <Button variant="contained">Stack Now</Button>
+              <Button variant="contained" sx={{ fontFamily: "Balsamiq Sans" }}>
+                Stack Now
+              </Button>
               <IconButton>
                 <LuMenu color="#000" size={30} />
               </IconButton>

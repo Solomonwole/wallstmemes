@@ -427,8 +427,8 @@ export const dataApp = {
   tier1_exchange_banner: "Wall Street Memes listing on tier 1 exchanges in:",
   "25m_sold": "Over $25m Raised",
   sold_out_text: "Wall Street Memes presale ending in:",
-  claim_live_in: "Wall Street Memes claim starting in:",
-  okx_listing: "Listing confirmed on OKX, 10am UTC 26th September",
+  claim_live_in: "0xB62E45c3Df611dcE236A6Ddc7A493d79F9DFadEf which will let you see the token in your wallet.",
+  okx_listing: "We recommend you stake your $WSM in order to earn rewards. If you don't want rewards, you can claim $WSM into any connected wallet. The token address is",
   okx_btn: "Sign up for OKX",
   m_exchange:
     "Over $25m raised, and huge number of top tier exchange listings currently scheduled.",

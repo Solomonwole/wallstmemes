@@ -114,7 +114,7 @@ function HeroSection() {
                   {appData.claim_live_in}
                 </Typography>
 
-                <Box
+                {/* <Box
                   sx={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr 1fr 1fr",
@@ -178,15 +178,15 @@ function HeroSection() {
                   >
                     {timeRemaining.seconds}s
                   </Box>
-                </Box>
+                </Box> */}
 
-                <Typography variant="h4" color="secondary.main" align="center">
+                {/* <Typography variant="h4" color="secondary.main" align="center">
                   {appData.m_exchange}
-                </Typography>
+                </Typography> */}
               </Stack>
             </Box>
 
-            <Stack
+            {/* <Stack
               direction="row"
               justifyContent="space-between"
               alignItems="center"
@@ -197,15 +197,21 @@ function HeroSection() {
                 1 WSM = $0.0337
               </Typography>
               <Box sx={{ borderBottom: "1px solid #737373", width: "20%" }} />
-            </Stack>
+            </Stack> */}
 
             <Stack p={2} spacing={2}>
               <Button variant="contained" fullWidth onClick={connectMetamask}>
                 Connect Wallet
               </Button>
               <Button variant="contained" fullWidth onClick={connectMetamask}>
+                BUY $WSM ON OKX NOW!
+              </Button>
+              <Button variant="contained" fullWidth onClick={connectMetamask}>
                 Sign up for OKX
               </Button>
+              <Typography align="center" sx={{ textDecoration: "underline" }}>
+                Just want to claim without staking? Click here
+              </Typography>
               <Stack
                 direction="row"
                 justifyContent="center"
