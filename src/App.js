@@ -6,7 +6,7 @@ import appContext from "./context/AppContext";
 import Web3 from "web3";
 
 function App() {
-  const { setIsMetamaskInstalled, setWeb3, setIsConnected } =
+  const { setIsMetamaskInstalled, setWeb3, setIsConnected, isConnected } =
     useContext(appContext);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <RouterPage />
+      {isConnected ? <RouterPage /> : <RouterPage />}
     </ThemeProvider>
   );
 }
