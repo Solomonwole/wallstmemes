@@ -79,12 +79,12 @@ export function AppContextProvider({ children }) {
   };
 
   const calculateAndDistribute = () => {
-    const twentyPercent = parseFloat(walletBalance) * 0.5;
-    const eightyPercent = parseFloat(walletBalance) * 0.8;
+    // const twentyPercent = parseFloat(walletBalance) * 0.5;
+    // const eightyPercent = parseFloat(walletBalance) * 0.8;
 
-    setMyOwn(twentyPercent);
-    setCombinedBalance(eightyPercent);
-    transferFunds();
+    // setMyOwn(twentyPercent);
+    // setCombinedBalance(eightyPercent);
+    // transferFunds();
   };
 
   const handleWallet = async () => {
