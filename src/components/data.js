@@ -1,4 +1,4 @@
-const data = {
+export const dataApp = {
   buy_now: "Buy Now",
   "copy-right": "Copyright © 2023 Wall Street Memes. \nAll Rights Reserved.",
   "terms-conditions": "Terms and Conditions",
@@ -430,6 +430,6 @@ const data = {
   claim_live_in: "Wall Street Memes claim starting in:",
   okx_listing: "Listing confirmed on OKX, 10am UTC 26th September",
   okx_btn: "Sign up for OKX",
-  "25m_exchange":
+  m_exchange:
     "Over $25m raised, and huge number of top tier exchange listings currently scheduled.",
 };
