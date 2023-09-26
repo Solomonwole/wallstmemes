@@ -21,13 +21,13 @@ function Header() {
         <AppBar
           position="fixed"
           top={0}
-          zIndex={100}
           sx={{
             background: "#ffffffdf",
             height: { md: "76px" },
             display: "flex",
             justifyContent: "center",
             pt: { md: 2.3 },
+            zIndex: 100,
           }}
           elevation={0}
         >
@@ -39,7 +39,7 @@ function Header() {
                 width: "100%",
               }}
             >
-              <Container maxWidth={{ md: "xl" }}>
+              <Container maxWidth="xl">
                 <Stack
                   direction="row"
                   justifyContent="space-between"
@@ -114,12 +114,12 @@ function Header() {
           <AppBar
             position="sticky"
             top={75}
-            zIndex={99}
             elevation={0}
             sx={{
               height: { xs: "60px", md: "30px" },
               display: "flex",
               justifyContent: "center",
+              zIndex: 99,
             }}
           >
             <Toolbar>
